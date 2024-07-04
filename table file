@@ -70,3 +70,17 @@ CREATE TABLE vegetables (
     specification TEXT,
     image_url VARCHAR(255)
 );
+
+
+
+CREATE TABLE events (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    date DATE NOT NULL,
+    time TIME NOT NULL,
+    venue VARCHAR(255) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    about TEXT,
+    gallery TEXT,
+    location VARCHAR(255)
+);
