@@ -1,0 +1,29 @@
+-- Step 1: Create the brand table
+CREATE TABLE brand (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    brand_name VARCHAR(255) NOT NULL
+);
+
+-- Step 2: Create the phone_records table with a foreign key reference to the brand table
+CREATE TABLE phone_records (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    brand_id INT NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    size VARCHAR(50) NOT NULL,
+    storage VARCHAR(50) NOT NULL,
+    color VARCHAR(50) NOT NULL,
+    ram VARCHAR(50) NOT NULL,
+    highlights TEXT,
+    description TEXT,
+    specification TEXT,
+    CONSTRAINT fk_brand FOREIGN KEY (brand_id) REFERENCES brand(id)
+);
+
+-- Step 3: Create the image table with a foreign key reference to the phone_records table
+CREATE TABLE image (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    phone_id INT NOT NULL,
+    image_url VARCHAR(255) NOT NULL,
+    CONSTRAINT fk_phone FOREIGN KEY (phone_id) REFERENCES phone_records(id)
+);
