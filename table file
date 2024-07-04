@@ -27,3 +27,33 @@ CREATE TABLE image (
     image_url VARCHAR(255) NOT NULL,
     CONSTRAINT fk_phone FOREIGN KEY (phone_id) REFERENCES phone_records(id)
 );
+
+
+
+
+
+-- Step 1: Create the brand table
+CREATE TABLE brand (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    brand_name VARCHAR(255) NOT NULL
+);
+
+-- Step 2: Create the cloth table with a foreign key reference to the brand table
+CREATE TABLE cloth (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    brand_id INT NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    size VARCHAR(50) NOT NULL,
+    color VARCHAR(50) NOT NULL,
+    specification TEXT,
+    CONSTRAINT fk_brand FOREIGN KEY (brand_id) REFERENCES brand(id)
+);
+
+-- Step 3: Create the image table with a foreign key reference to the cloth table
+CREATE TABLE image (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    cloth_id INT NOT NULL,
+    image_url VARCHAR(255) NOT NULL,
+    CONSTRAINT fk_cloth FOREIGN KEY (cloth_id) REFERENCES cloth(id)
+);
