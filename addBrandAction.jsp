@@ -17,7 +17,7 @@
         conn = DriverManager.getConnection(url, user, password);
 
         // Check if the brand name already exists
-        String checkQuery = "SELECT COUNT(*) FROM brands WHERE name = ?";
+        String checkQuery = "SELECT COUNT(*) FROM brands WHERE brand_name = ?";
         psCheck = conn.prepareStatement(checkQuery);
         psCheck.setString(1, brandName);
         rs = psCheck.executeQuery();
@@ -26,7 +26,7 @@
             out.println("<script>alert('Brand name already exists. Please try another name.'); window.location.href='addbrand.jsp';</script>");
         } else {
             // Prepare the SQL query to insert the brand name
-            String insertQuery = "INSERT INTO brands (name) VALUES (?)";
+            String insertQuery = "INSERT INTO brands (brand_name) VALUES (?)";
             psInsert = conn.prepareStatement(insertQuery);
             psInsert.setString(1, brandName);
 
